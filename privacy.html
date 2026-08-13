@@ -5,22 +5,72 @@
   <title>Privaatsuspoliitika — Wevex OÜ</title>
   <meta name="robots" content="noindex,nofollow">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;max-width:720px;margin:4rem auto;padding:0 1rem;color:#222}a{color:#0366d6}</style>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;max-width:720px;margin:4rem auto;padding:0 1rem;color:#222}
+    a{color:#0366d6}
+    .lang-switch{margin-bottom:2rem}
+    .lang-switch button{font:inherit;padding:.3rem .8rem;margin-right:.5rem;border:1px solid #ccc;border-radius:6px;background:#f6f8fa;cursor:pointer}
+    .lang-switch button[aria-pressed="true"]{background:#0366d6;color:#fff;border-color:#0366d6}
+    .lang-block[hidden]{display:none}
+  </style>
 </head>
 <body>
-  <h1>Wevex OÜ — Privaatsuspoliitika</h1>
-  <p>Wevex OÜ kogub käesoleva vormi kaudu teie isikuandmeid (nimi, telefoninumber, tööalane info) eesmärgiga vahendada teile tööpakkumisi.</p>
+  <div class="lang-switch">
+    <button type="button" data-lang="et" aria-pressed="true">ET</button>
+    <button type="button" data-lang="uk" aria-pressed="false">UK</button>
+  </div>
 
-  <h2>Milliseid andmeid kogume</h2>
-  <p>Nimi, telefoninumber ja vormis esitatud tööalane teave.</p>
+  <div class="lang-block" data-lang="et" lang="et">
+    <h1>Wevex OÜ — Privaatsuspoliitika</h1>
+    <p>Wevex OÜ kogub käesoleva vormi kaudu teie isikuandmeid (nimi, telefoninumber, tööalane info) eesmärgiga vahendada teile tööpakkumisi.</p>
 
-  <h2>Milleks</h2>
-  <p>Teiega ühenduse võtmiseks sobivate tööpakkumiste osas ja teie andmete edastamiseks võimalikele tööandjatele.</p>
+    <h2>Milliseid andmeid kogume</h2>
+    <p>Nimi, telefoninumber ja vormis esitatud tööalane teave.</p>
 
-  <h2>Kellega jagame</h2>
-  <p>Teie andmeid võidakse jagada tööandjatega, kelle pakkumised teile huvi võivad pakkuda.</p>
+    <h2>Milleks</h2>
+    <p>Teiega ühenduse võtmiseks sobivate tööpakkumiste osas ja teie andmete edastamiseks võimalikele tööandjatele.</p>
 
-  <h2>Säilitamine ja kustutamine</h2>
-  <p>Säilitame andmeid nii kaua kui vajalik vahendusteenuse osutamiseks. Teil on õigus küsida oma andmete kustutamist, saates e-kirja aadressile <a href="mailto:william@wevex.ee">william@wevex.ee</a>.</p>
+    <h2>Kellega jagame</h2>
+    <p>Teie andmeid võidakse jagada tööandjatega, kelle pakkumised teile huvi võivad pakkuda.</p>
+
+    <h2>Säilitamine ja kustutamine</h2>
+    <p>Säilitame andmeid nii kaua kui vajalik vahendusteenuse osutamiseks. Teil on õigus küsida oma andmete kustutamist, saates e-kirja aadressile <a href="mailto:william@wevex.ee">william@wevex.ee</a>.</p>
+  </div>
+
+  <div class="lang-block" data-lang="uk" lang="uk" hidden>
+    <h1>Wevex OÜ — Політика конфіденційності</h1>
+    <p>Wevex OÜ збирає ваші персональні дані (ім'я, номер телефону, інформація про роботу) через цю форму з метою надання вам пропозицій щодо працевлаштування.</p>
+
+    <h2>Які дані ми збираємо</h2>
+    <p>Ім'я, номер телефону та надана у формі інформація про роботу.</p>
+
+    <h2>Для чого</h2>
+    <p>Щоб зв'язатися з вами щодо відповідних пропозицій роботи та передати ваші дані потенційним роботодавцям.</p>
+
+    <h2>З ким ми ділимося даними</h2>
+    <p>Ваші дані можуть бути передані роботодавцям, чиї пропозиції можуть вас зацікавити.</p>
+
+    <h2>Зберігання та видалення</h2>
+    <p>Ми зберігаємо дані стільки, скільки необхідно для надання посередницьких послуг. Ви маєте право вимагати видалення своїх даних, надіславши електронного листа на адресу <a href="mailto:william@wevex.ee">william@wevex.ee</a>.</p>
+  </div>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.lang-switch button');
+      var blocks = document.querySelectorAll('.lang-block');
+      function setLang(lang) {
+        blocks.forEach(function (b) { b.hidden = b.dataset.lang !== lang; });
+        buttons.forEach(function (btn) { btn.setAttribute('aria-pressed', btn.dataset.lang === lang); });
+        document.documentElement.setAttribute('lang', lang);
+        try { localStorage.setItem('wevex-privacy-lang', lang); } catch (e) {}
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () { setLang(btn.dataset.lang); });
+      });
+      var saved = null;
+      try { saved = localStorage.getItem('wevex-privacy-lang'); } catch (e) {}
+      if (saved === 'et' || saved === 'uk') setLang(saved);
+    })();
+  </script>
 </body>
 </html>
